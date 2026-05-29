@@ -10,6 +10,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .business-model-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: rgba(212, 175, 55, 0.03);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+        .flow-node {
+            background: rgba(10, 10, 10, 0.8);
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+            animation: pulseGlow 2s infinite alternate;
+        }
+        .flow-node:nth-child(1) { animation-delay: 0s; }
+        .flow-node:nth-child(3) { animation-delay: 0.4s; }
+        .flow-node:nth-child(5) { animation-delay: 0.8s; }
+        .flow-node:nth-child(7) { animation-delay: 1.2s; }
+        .flow-node:nth-child(9) { animation-delay: 1.6s; }
+
+        .flow-node i { color: var(--gold-primary); width: 32px; height: 32px; margin-bottom: 8px; }
+        .flow-node span { font-size: 0.8rem; font-weight: 600; text-align: center; color: #fff; }
+        .flow-arrow {
+            color: var(--gold-primary);
+            width: 24px;
+            height: 24px;
+            animation: slideArrow 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 10px rgba(212, 175, 55, 0.15); transform: scale(1); }
+            to { box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); transform: scale(1.05); }
+        }
+        @keyframes slideArrow {
+            0% { transform: translateX(-8px); opacity: 0.3; }
+            50% { transform: translateX(8px); opacity: 1; }
+            100% { transform: translateX(-8px); opacity: 0.3; }
+        }
+
+        @media (max-width: 768px) {
+            .business-model-grid { grid-template-columns: 1fr; }
+            .flow-container { flex-direction: column; gap: 20px; }
+            .flow-arrow { transform: rotate(90deg) !important; animation: slideArrowDown 1.5s infinite ease-in-out !important; }
+        }
+        @keyframes slideArrowDown {
+            0% { transform: translateY(-8px) rotate(90deg); opacity: 0.3; }
+            50% { transform: translateY(8px) rotate(90deg); opacity: 1; }
+            100% { transform: translateY(-8px) rotate(90deg); opacity: 0.3; }
+        }
+    </style>
 </head>
 <body>
     <div class="cursor"></div>
@@ -30,11 +99,13 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="manufacturing.html" class="active">Manufacturing</a></li>
+                <li><a href="clients.html">Our Clients</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="invest.html">Invest Planning</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-actions">
-
+                <a href="https://www.instagram.com/heemagoldofficial/" target="_blank" class="social-link" style="display: flex; align-items: center; margin-right: 15px;"><i data-lucide="instagram"></i></a>
                 <a href="contact.html" class="btn btn-primary">Enquire Now</a>
             </div>
         </nav>
@@ -49,10 +120,61 @@
                     <p>Combining traditional artistry with modern technology to create timeless jewelry.</p>
                 </div>
                 
+                <div class="business-model-grid">
+                    <div class="bento-item glass">
+                        <div class="bento-icon"><i data-lucide="gem"></i></div>
+                        <h3>Manufacturing & Wholesale</h3>
+                        <p style="color: var(--gold-primary); font-size: 0.9rem; margin-bottom: 10px;">Primary Business</p>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Produces finished gold bangles and jewellery directly for retail clients, serving Kerala's most trusted jewellery brands including Malabar Gold and PGM Jewellery.</p>
+                        <div class="nic-codes" style="margin-top: 15px;">
+                            <span>NIC 32111</span><span>NIC 32112</span><span>NIC 32119</span>
+                        </div>
+                    </div>
+                    <div class="bento-item glass">
+                        <div class="bento-icon"><i data-lucide="hammer"></i></div>
+                        <h3>Job Work</h3>
+                        <p style="color: var(--gold-primary); font-size: 0.9rem; margin-bottom: 10px;">Contract Manufacturing</p>
+                        <p style="font-size: 0.9rem; color: var(--text-dim);">Contract manufacturing services utilizing our state-of-the-art machinery and artisanal expertise to fulfill orders for other established jewellers.</p>
+                    </div>
+                </div>
+
+                <div class="glass" style="padding: 50px; border-radius: 24px; margin-bottom: 50px;">
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 2rem;">Order <span class="gold-text">Flow</span></h3>
+                        <p style="color: var(--text-dim);">A streamlined process ensuring precision from design to delivery.</p>
+                    </div>
+                    <div class="flow-container">
+                        <div class="flow-node">
+                            <i data-lucide="box"></i>
+                            <span>New Sample</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="flow-arrow"></i>
+                        <div class="flow-node">
+                            <i data-lucide="users"></i>
+                            <span>Client Select</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="flow-arrow"></i>
+                        <div class="flow-node">
+                            <i data-lucide="receipt"></i>
+                            <span>Purchase Order</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="flow-arrow"></i>
+                        <div class="flow-node">
+                            <i data-lucide="settings"></i>
+                            <span>Production</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="flow-arrow"></i>
+                        <div class="flow-node">
+                            <i data-lucide="truck"></i>
+                            <span>Delivery</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="process-card glass">
                     <div class="process-content">
                         <h3>Artisanal Expertise</h3>
-                        <p>Our manufacturing unit in Angadippuram is equipped with state-of-the-art machinery for high-precision jewelry crafting.</p>
+                        <p>Our manufacturing unit in Perinthalmanna Ramapuram is equipped with state-of-the-art machinery. We specialize in blending traditional craftsmanship with cutting-edge technology.</p>
                         <ul class="check-list">
                             <li><i data-lucide="check-circle"></i> <strong>Gold & Silver Casting:</strong> Precise vacuum casting for flawless structures.</li>
                             <li><i data-lucide="check-circle"></i> <strong>Stone Setting:</strong> Micro-pave and prong settings for precious stones.</li>
@@ -60,14 +182,13 @@
                             <li><i data-lucide="check-circle"></i> <strong>Final Polishing:</strong> Multi-stage finishing for the ultimate mirror shine.</li>
                         </ul>
                     </div>
-
                 </div>
 
                 <div class="manufacturing-grid">
                     <div class="m-card glass">
                         <i data-lucide="shield-check"></i>
                         <h4>Quality Control</h4>
-                        <p>Every piece undergoes rigorous testing for purity and durability.</p>
+                        <p>High-grade QC managed personally by all three partners. Near-zero returns with a free replacement policy.</p>
                     </div>
                     <div class="m-card glass">
                         <i data-lucide="zap"></i>
@@ -93,16 +214,40 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="manufacturing.html">Manufacturing</a>
+                <a href="clients.html">Our Clients</a>
                 <a href="gallery.html">Gallery</a>
+                <a href="invest.html">Invest Planning</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="footer-info">
-                <p>&copy; 2026 Heema Gold LLP. All rights reserved.</p>
-                <p>Managed by ROC-Ernakulam | LLPIN ACM-5008</p>
+            <div class="footer-info" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" target="_blank" aria-label="Facebook" class="footer-social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="https://www.instagram.com/heemagoldofficial/" target="_blank" aria-label="Instagram" class="footer-social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Twitter" class="footer-social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+                    </a>
+                </div>
+                <p>&copy; 2026 Heema Gold LLP. All Rights Reserved. | Tech Partner: Mahesh Koottummal</p>
             </div>
         </div>
     </footer>
 
     <script src="main.js"></script>
+
+        <!-- Floating WhatsApp -->
+    <div class="whatsapp-wrapper">
+        <span class="whatsapp-label">Contact Us</span>
+        <a href="https://wa.me/919847715916" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        </a>
+    </div>
+
+        
 </body>
 </html>

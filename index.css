@@ -40,13 +40,28 @@ body {
 .cursor-follower {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--gold-primary);
-    border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.2s, background 0.3s;
-    opacity: 0.5;
+    opacity: 0.8;
+    border: none; /* Removed the ring border */
+}
+
+.cursor-follower::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    background-image: url('new_cursor_bangle.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: spinBangle 6s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+@keyframes spinBangle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Typography Utilities */
@@ -299,7 +314,7 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 300px);
+    grid-auto-rows: minmax(300px, auto);
     gap: 20px;
 }
 
@@ -605,6 +620,103 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
     margin-top: 100px;
 }
 
+/* Bangle Manufacturing Animation */
+.manufacturing-animation-container {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding: 40px 0;
+    z-index: 2;
+}
+
+.anim-line {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.anim-pulse {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--gold-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 20px 5px var(--gold-glow);
+    animation: movePulse 4s infinite ease-in-out;
+}
+
+@keyframes movePulse {
+    0% { left: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+.anim-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    padding: 0 10%;
+}
+
+.anim-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.node-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--card-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-primary);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    animation: pulseNode 2s infinite alternate;
+}
+
+.node-icon i {
+    width: 30px;
+    height: 30px;
+}
+
+.anim-node:nth-child(1) .node-icon { animation-delay: 0s; }
+.anim-node:nth-child(2) .node-icon { animation-delay: 1.3s; }
+.anim-node:nth-child(3) .node-icon { animation-delay: 2.6s; }
+.anim-node.final-node .node-icon { 
+    animation: none; 
+    border-color: var(--gold-primary); 
+    box-shadow: 0 0 25px var(--accent-glow);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+@keyframes pulseNode {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(212, 175, 55, 0); }
+    100% { transform: scale(1.15); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); border-color: var(--gold-primary); }
+}
+
+.node-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 /* Footer Content */
 .footer-content {
     max-width: 1200px;
@@ -640,13 +752,164 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
     opacity: 0.6;
 }
 
+.footer-social-icon {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(212, 175, 55, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.footer-social-icon:hover {
+    background-color: var(--gold-primary);
+    color: #000;
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* ===== Advanced WhatsApp Floating Button ===== */
+.whatsapp-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.whatsapp-float {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: wa-bounce 2.8s ease-in-out infinite;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.whatsapp-float svg {
+    width: 35px;
+    height: 35px;
+}
+
+/* Pulse ring */
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 3px solid rgba(37, 211, 102, 0.6);
+    animation: wa-pulse 2s ease-out infinite;
+    pointer-events: none;
+}
+
+/* Second pulse ring (delayed) */
+.whatsapp-float::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 3px solid rgba(37, 211, 102, 0.35);
+    animation: wa-pulse 2s ease-out 0.6s infinite;
+    pointer-events: none;
+}
+
+/* "Contact Us" tooltip label */
+.whatsapp-label {
+    background: #25d366;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 30px;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    order: -1;
+}
+
+.whatsapp-wrapper:hover .whatsapp-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.12);
+    background-color: #128c7e;
+    box-shadow: 0 6px 25px rgba(18, 140, 126, 0.55);
+    animation-play-state: paused;
+}
+
+@keyframes wa-bounce {
+    0%, 100% { transform: translateY(0); }
+    30%       { transform: translateY(-7px); }
+    60%       { transform: translateY(-3px); }
+}
+
+@keyframes wa-pulse {
+    0%   { transform: scale(1);   opacity: 0.75; }
+    70%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Left Floating Social Icons */
+.social-float {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    z-index: 10000;
+}
+
+.social-float a {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-float a:hover {
+    background-color: var(--gold-primary);
+    color: #000;
+    transform: scale(1.1) translateX(5px);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .bento-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
+        grid-auto-rows: minmax(350px, auto);
     }
-    .bento-item.tall, .bento-item.wide { grid-column: span 2; grid-row: auto; height: 350px; }
+    .bento-item.tall, .bento-item.wide { grid-column: span 2; grid-row: auto; height: auto; min-height: 350px; }
     .hero { flex-direction: column; text-align: center; padding-top: 160px; }
     .hero-btns { justify-content: center; }
     .contact-container { grid-template-columns: 1fr; gap: 60px; padding: 40px; }
@@ -655,7 +918,7 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .process-card { flex-direction: column; text-align: center; padding: 30px; }
-    .bento-item { height: 300px; }
+    .bento-item { height: auto; min-height: 300px; }
     .stats { grid-template-columns: 1fr 1fr; }
     .footer-links {
         flex-direction: column;
