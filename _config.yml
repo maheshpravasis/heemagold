@@ -1,0 +1,13 @@
+theme: jekyll-theme-primer
+title: Heema Gold
+description: Your site description
+
+plugins:
+  - jekyll-github-metadata
+  - jekyll-seo-tag
+
+exclude:
+  - venv/
+  - .venv/
+  - env/
+  - .env/
