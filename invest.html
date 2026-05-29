@@ -14,7 +14,7 @@
     
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=2">
+    <link rel="stylesheet" href="index.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -168,7 +168,7 @@
             </div>
 
             <div class="glass" style="padding: 30px; overflow-x: auto; margin-bottom: 40px;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <table class="financial-table" style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr style="border-bottom: 1px solid var(--glass-border);">
                             <th style="padding: 15px; color: var(--gold-primary);">Aspect</th>
@@ -180,25 +180,25 @@
                     </thead>
                     <tbody>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 15px; font-weight: 600;">Revenue</td>
-                            <td style="padding: 15px;">₹33.10 Cr</td>
-                            <td style="padding: 15px;">₹37.36 Cr</td>
-                            <td style="padding: 15px;">₹24.70 Cr</td>
-                            <td style="padding: 15px; font-weight: 700; color: #fff;">₹100.00 Cr</td>
+                            <td data-label="Aspect" style="padding: 15px; font-weight: 600; color: var(--gold-primary);">Revenue</td>
+                            <td data-label="2022 - 23" style="padding: 15px;">₹33.10 Cr</td>
+                            <td data-label="2023 - 24" style="padding: 15px;">₹37.36 Cr</td>
+                            <td data-label="2024 - 25" style="padding: 15px;">₹24.70 Cr</td>
+                            <td data-label="Projected" style="padding: 15px; font-weight: 700; color: #fff;">₹100.00 Cr</td>
                         </tr>
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 15px; font-weight: 600;">Gross Profit</td>
-                            <td style="padding: 15px;">₹52.63 L</td>
-                            <td style="padding: 15px;">₹59.41 L</td>
-                            <td style="padding: 15px;">₹40.01 L</td>
-                            <td style="padding: 15px; font-weight: 700; color: #fff;">₹1.60 Cr</td>
+                            <td data-label="Aspect" style="padding: 15px; font-weight: 600; color: var(--gold-primary);">Gross Profit</td>
+                            <td data-label="2022 - 23" style="padding: 15px;">₹52.63 L</td>
+                            <td data-label="2023 - 24" style="padding: 15px;">₹59.41 L</td>
+                            <td data-label="2024 - 25" style="padding: 15px;">₹40.01 L</td>
+                            <td data-label="Projected" style="padding: 15px; font-weight: 700; color: #fff;">₹1.60 Cr</td>
                         </tr>
                         <tr>
-                            <td style="padding: 15px; font-weight: 600;">Net Profit</td>
-                            <td style="padding: 15px;">₹10.09 L</td>
-                            <td style="padding: 15px;">₹11.59 L</td>
-                            <td style="padding: 15px;">₹9.01 L</td>
-                            <td style="padding: 15px; font-weight: 700; color: #fff;">₹35.67 L</td>
+                            <td data-label="Aspect" style="padding: 15px; font-weight: 600; color: var(--gold-primary);">Net Profit</td>
+                            <td data-label="2022 - 23" style="padding: 15px;">₹10.09 L</td>
+                            <td data-label="2023 - 24" style="padding: 15px;">₹11.59 L</td>
+                            <td data-label="2024 - 25" style="padding: 15px;">₹9.01 L</td>
+                            <td data-label="Projected" style="padding: 15px; font-weight: 700; color: #fff;">₹35.67 L</td>
                         </tr>
                     </tbody>
                 </table>
@@ -207,7 +207,7 @@
             
             <div style="text-align: center; margin-top: 40px;">
                 <p>For investment inquiries, contact <strong>Mr. Manikandan (Managing Partner)</strong></p>
-                <div class="hero-btns" style="justify-content: center; margin-top: 15px; gap: 20px;">
+                <div class="hero-btns" style="justify-content: center; margin-top: 15px; gap: 20px; flex-direction: row !important;">
                     <a href="tel:+919847715916" class="btn btn-primary" style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; animation: wa-bounce 2.5s ease-in-out infinite;" aria-label="Call Us">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     </a>
