@@ -920,35 +920,42 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
 @media (max-width: 768px) {
     .page-padding { padding: 100px 20px 40px; }
     
-    .nav-container { flex-wrap: wrap; justify-content: center; gap: 10px; padding: 10px 15px; }
+    .nav-container { flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 15px 15px; }
+    .nav-actions { margin-left: auto; }
+    
+    /* Hamburger Menu Logic */
+    .hamburger { display: block !important; cursor: pointer; }
     .nav-links { 
-        display: flex; 
-        overflow-x: auto; 
+        display: none !important; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 75px; 
+        left: 0; 
         width: 100%; 
-        gap: 15px; 
-        padding-bottom: 8px; 
-        -webkit-overflow-scrolling: touch; 
-        justify-content: flex-start;
+        background: rgba(10, 10, 10, 0.98); 
+        backdrop-filter: blur(15px); 
+        padding: 20px 0; 
+        border-bottom: 2px solid var(--gold-primary); 
+        z-index: 1000; 
+        text-align: center;
+        gap: 25px;
     }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-actions { margin-top: 5px; }
+    .nav-links.active { display: flex !important; }
+    
+    .btn { padding: 8px 16px !important; font-size: 0.85rem !important; }
     
     .bento-grid { grid-template-columns: 1fr; gap: 15px; }
     .bento-item.tall, .bento-item.wide { grid-column: 1; min-height: 250px; }
     .client-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     
-    .hero-content h1 { font-size: 2.2rem; }
-    .section-header h2 { font-size: 1.8rem; }
+    .hero-content h1 { font-size: 1.8rem; word-break: break-word; line-height: 1.2; }
+    .section-header h2 { font-size: 1.5rem; word-break: break-word; line-height: 1.2; }
     
     .process-card { flex-direction: column; text-align: center; padding: 20px; }
     .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
     
     .footer-content { gap: 20px; }
-    .footer-links {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-    }
+    .footer-links { flex-direction: column; gap: 12px; align-items: center; }
     .hero-visual { margin-top: 40px; }
     
     .whatsapp-wrapper { bottom: 20px; right: 20px; }
@@ -956,9 +963,14 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
     .whatsapp-float svg { width: 28px; height: 28px; }
 }
 
+@media (min-width: 769px) {
+    .hamburger { display: none !important; }
+}
+
 /* Responsive Design: Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
-    .hero-content h1 { font-size: 1.9rem; }
+    .hero-content h1 { font-size: 1.5rem; }
+    .section-header h2 { font-size: 1.3rem; }
     .hero-btns { flex-direction: column; align-items: center; gap: 15px; }
     .stats { grid-template-columns: 1fr; }
     .client-grid { grid-template-columns: 1fr; }
