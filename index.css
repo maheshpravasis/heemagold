@@ -1,4 +1,4 @@
-html { scroll-behavior: smooth !important; }
+html { scroll-behavior: smooth !important; overflow-x: hidden; }
 :root {
     --bg-color: #050505;
     --card-bg: rgba(20, 20, 20, 0.7);
@@ -134,9 +134,9 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
 }
 
 .header.scrolled {
-    background: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(5, 5, 5, 0.98);
     padding: 15px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
@@ -249,7 +249,8 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
 
 .glow-bg {
     position: absolute;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 400px;
     background: var(--gold-primary);
     filter: blur(150px);
@@ -923,9 +924,12 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
     .nav-container { flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 15px 15px; }
     .nav-actions { margin-left: auto; }
     
+    /* Force Solid Header on Mobile */
+    .header { background: rgba(5, 5, 5, 0.98) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; padding: 15px 0 !important; }
+    
     /* Hamburger Menu Logic */
     .hamburger { display: block !important; cursor: pointer; margin-left: 10px; }
-    .logo a { font-size: 1.3rem !important; }
+    .logo a { font-size: 1.15rem !important; }
     .nav-links { 
         display: none !important; 
         flex-direction: column; 
@@ -1039,6 +1043,119 @@ h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
     100% {
         transform: translateY(20px) rotate(360deg) scale(0.9);
     }
+}
+
+/* Bulletproof Mobile Layout Fixes */
+@media (max-width: 768px) {
+    /* Financial Table Fix */
+    table, .financial-table {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    /* Contact Form Fix */
+    select, input, textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+    }
+    .contact-container {
+        padding: 20px !important;
+    }
+    /* Manufacturing Process Fix */
+    .flow-container {
+        flex-direction: column !important;
+        gap: 30px !important;
+        padding: 30px 15px !important;
+    }
+    .flow-node {
+        margin: 0 auto;
+    }
+    .flow-arrow {
+        transform: rotate(90deg) !important;
+        margin: 10px 0 !important;
+    }
+    .stat-item {
+        min-width: 100% !important;
+    }
+    
+    /* Strict RWD Single Column Grids */
+    .bento-grid, .manufacturing-grid, .gallery-grid, .client-grid, .stats {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+    .bento-item, .gallery-item, .m-card, .process-card, .partner-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    /* About Page Mobile Fixes */
+    .about-org-container {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    .about-org-text, .about-info-list {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    .about-info-list {
+        flex-direction: column !important;
+    }
+    
+    /* Make the Bangle Manufacturing Process Animation vertical */
+    .manufacturing-animation-container {
+        padding: 20px 0 !important;
+    }
+    .anim-nodes {
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+    .anim-line {
+        /* Change the horizontal line to vertical */
+        top: 10% !important;
+        bottom: 10% !important;
+        left: 50% !important;
+        width: 2px !important;
+        height: 80% !important;
+        transform: translateX(-50%) !important;
+    }
+    .anim-pulse {
+        width: 100% !important;
+        height: 20px !important;
+        animation: slidePulseVertical 3s linear infinite !important;
+    }
+}
+
+@keyframes slidePulseVertical {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* About Page Base Styles */
+.about-org-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.about-org-text {
+    flex: 1;
+    min-width: 300px;
+}
+.about-info-list {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 0;
+    min-width: 300px;
 }
 
 /* Touch Device Cursor Fix */
